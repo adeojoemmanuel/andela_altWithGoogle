@@ -4,7 +4,10 @@
   "description": "Adeojo emmanuel alc with google",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cornflourblue/studentRegAlcwithgoogle.git"
+    "url": "https://github.com/andela_altWithGoogle.git"
+  },
+  "engines": {
+    "node": "6.11.5"
   },
   "dependencies": {
     "bcryptjs": "^2.1.0",
