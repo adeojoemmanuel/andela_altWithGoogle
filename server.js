@@ -26,7 +26,7 @@ app.get('/', function (req, res) {
     return res.redirect('/app');
 });
 
-// start server
+//start server.listen(process.env.PORT || 5000)
 var server = app.listen(5000, function () {
     console.log('Server listening at http://' + server.address().address + ':' + server.address().port);
 });
