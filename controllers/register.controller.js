@@ -8,7 +8,7 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function (req, res) {
-    // register using api to maintain clean separation between layers
+ 
     request.post({
         url: config.apiUrl + '/users/register',
         form: req.body,
@@ -21,10 +21,11 @@ router.post('/', function (req, res) {
         if (response.statusCode !== 200) {
             return res.render('register', {
                 error: response.body,
+                regNo : req.body.regNo,
+                matNo: req.body.matNo,
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
                 username: req.body.username,
-                username: req.body.userimage
             });
         }
 

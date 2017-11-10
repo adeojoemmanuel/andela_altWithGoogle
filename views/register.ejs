@@ -6,6 +6,14 @@
     <% } %>
     <form method="post">
         <div class="form-group">
+            <label for="regNo">Registration Number</label>
+            <input type="text" name="regNo" id="regNo" class="form-control" value="<%= locals.regNo || '' %>" required />
+        </div>
+        <div class="form-group">
+            <label for="matNo">Mat Number</label>
+            <input type="text" name="matNo" id="matNo" class="form-control" value="<%= locals.matNo || '' %>" required />
+        </div>
+        <div class="form-group">
             <label for="firstName">First name</label>
             <input type="text" name="firstName" id="firstName" class="form-control" value="<%= locals.firstName || '' %>" required />
         </div>
@@ -20,10 +28,6 @@
         <div class="form-group">
             <label for="password">Password</label>
             <input type="password" name="password" id="password" class="form-control" required />
-        </div>
-        <div class="form-group">
-            <label for="image">Profile Image</label>
-            <input type="file" name="file" id="file"  required />
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Register</button>
