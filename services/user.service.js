@@ -20,8 +20,25 @@ service.getById = getById;
 service.create = create;
 service.update = update;
 service.delete = _delete;
+service.getall = getall;
 
 module.exports = service;
+
+function getall(){
+    db.users.find({}, function(err, docs) {
+        if (err)  deferred.reject(err);
+        deferred.resolve(docs);
+        console.log(docs);
+    })
+}
+
+// function getall(){
+//     db.users.find({}).toArray(function(err, result) {
+//         if (err)  deferred.reject(err);
+//         deferred.resolve(result);
+//         db.close();
+//     });
+// }
 
 function authenticate(username, password) {
     var deferred = Q.defer();

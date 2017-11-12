@@ -7,10 +7,18 @@ var userService = require('services/user.service');
 router.post('/authenticate', authenticateUser);
 router.post('/register', registerUser);
 router.get('/current', getCurrentUser);
+router.get('/getall', getall);
 router.put('/:_id', updateUser);
 router.delete('/:_id', deleteUser);
 
 module.exports = router;
+
+function getall(req, res){
+    userService.getall().then(function(data) {
+        console.log(data);
+        res.send(data);
+    });
+}
 
 function authenticateUser(req, res) {
     userService.authenticate(req.body.username, req.body.password)

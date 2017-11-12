@@ -1,5 +1,5 @@
 ﻿{
-    "connectionString": "mongodb://localhost:27017/AlcwithgoogleTask",
+    "connectionString": "mongodb://adeojoemmanuel:LORDflex22!@ds01316.mlab.com:1316/altwithgoogle",
     "apiUrl": "http://localhost:5000/api",
     "secret": "my secrete"
 }

@@ -24,6 +24,14 @@
                 controller: 'Account.IndexController',
                 controllerAs: 'vm',
                 data: { activeTab: 'account' }
+            })
+            
+            .state('viewStudent', {
+                url: '/viewStudent',
+                templateUrl: 'viewStudent/index.html',
+                controller: 'viewStudent.IndexController',
+                controllerAs: 'vm',
+                data: { activeTab: 'viewStudent' }
             });
     }
 
