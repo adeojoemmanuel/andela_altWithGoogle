@@ -1,10 +1,9 @@
 (function () {
     'use strict';
 
-    angular.module('app')
-    .controller('viewStudent.IndexController', Controller);
+    angular.module('app').controller('viewStudent.IndexController', Controller);
 
-    function Controller(UserService) {
+    function Controller(UserService){
         var vm = this;
 
         vm.user = null;
@@ -14,7 +13,7 @@
         function initController() {
             // getall user
             UserService.GetAll().then(function (response) {
-                vm.user = response.data;
+                vm.user = response;
                 console.log(response)
             });
         }

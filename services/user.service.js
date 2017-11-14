@@ -11,7 +11,7 @@ var cloudinary = require('cloudinary').v2;
 dotenv.load();
 
 
-db.bind('users');
+db.bind('altwithgoogle');
 
 var service = {};
 
@@ -24,16 +24,30 @@ service.getall = getall;
 
 module.exports = service;
 
-function getall(){
-    db.users.find({}, function(err, docs) {
-        if (err)  deferred.reject(err);
-        deferred.resolve(docs);
-        console.log(docs);
-    })
+// function getall(){
+//     db.altwithgoogle.find({}, function(err, docs) {
+//         if (err)  deferred.reject(err);
+//         deferred.resolve(docs);
+//         console.log(docs);
+//     })
+// }
+
+function getall() {
+    var deferred = Q.defer();
+    db.altwithgoogle.find({}, function(err, user) {
+        if (err) deferred.reject('unable to get datas');
+        if (user) {
+            // return user (without hashed password)
+            deferred.resolve(_.omit(user, 'hash'));
+        } else {
+            deferred.resolve();
+        }
+    });
+    return deferred.promise;
 }
 
 // function getall(){
-//     db.users.find({}).toArray(function(err, result) {
+//     db.altwithgoogle.find({}).toArray(function(err, result) {
 //         if (err)  deferred.reject(err);
 //         deferred.resolve(result);
 //         db.close();
@@ -43,7 +57,7 @@ function getall(){
 function authenticate(username, password) {
     var deferred = Q.defer();
 
-    db.users.findOne({ username: username }, function (err, user) {
+    db.altwithgoogle.findOne({ username: username }, function (err, user) {
         if (err) deferred.reject(err.name + ': ' + err.message);
 
         if (user && bcrypt.compareSync(password, user.hash)) {
@@ -61,7 +75,7 @@ function authenticate(username, password) {
 function getById(_id) {
     var deferred = Q.defer();
 
-    db.users.findById(_id, function (err, user) {
+    db.altwithgoogle.findById(_id, function (err, user) {
         if (err) deferred.reject(err.name + ': ' + err.message);
 
         if (user) {
@@ -80,7 +94,7 @@ function create(userParam) {
     var deferred = Q.defer();
 
     // validation
-    db.users.findOne({ username: userParam.username }, function (err, user) {
+    db.altwithgoogle.findOne({ username: userParam.username }, function (err, user) {
         if (err) deferred.reject(err.name + ': ' + err.message);
         if (user) {
             // username already exists
@@ -95,7 +109,7 @@ function create(userParam) {
         var user = _.omit(userParam, 'password');
         // add hashed password to user object
         user.hash = bcrypt.hashSync(userParam.password, 10);
-        db.users.insert(user, function (err, doc) {
+        db.altwithgoogle.insert(user, function (err, doc) {
             if (err) deferred.reject(err.name + ': ' + err.message);
             deferred.resolve();
         });
@@ -108,12 +122,12 @@ function update(_id, userParam) {
     var deferred = Q.defer();
 
     // validation
-    db.users.findById(_id, function (err, user) {
+    db.altwithgoogle.findById(_id, function (err, user) {
         if (err) deferred.reject(err.name + ': ' + err.message);
 
         if (user.username !== userParam.username) {
             // username has changed so check if the new username is already taken
-            db.users.findOne(
+            db.altwithgoogle.findOne(
                 { username: userParam.username },
                 function (err, user) {
                     if (err) deferred.reject(err.name + ': ' + err.message);
@@ -143,7 +157,7 @@ function update(_id, userParam) {
             set.hash = bcrypt.hashSync(userParam.password, 10);
         }
 
-        db.users.update(
+        db.altwithgoogle.update(
             { _id: mongo.helper.toObjectID(_id) },
             { $set: set },
             function (err, doc) {
@@ -159,7 +173,7 @@ function update(_id, userParam) {
 function _delete(_id) {
     var deferred = Q.defer();
 
-    db.users.remove(
+    db.altwithgoogle.remove(
         { _id: mongo.helper.toObjectID(_id) },
         function (err) {
             if (err) deferred.reject(err.name + ': ' + err.message);

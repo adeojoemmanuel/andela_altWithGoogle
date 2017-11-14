@@ -14,11 +14,18 @@ router.delete('/:_id', deleteUser);
 module.exports = router;
 
 function getall(req, res){
-    userService.getall().then(function(data) {
-        console.log(data);
-        res.send(data);
+    userService.getall().then(function (user) {
+        if (user) {
+            res.send(user);
+        } else {
+            res.sendStatus(404);
+        }
+    })
+    .catch(function (err) {
+        res.status(400).send(err);
     });
 }
+
 
 function authenticateUser(req, res) {
     userService.authenticate(req.body.username, req.body.password)

@@ -1,5 +1,7 @@
 ﻿{
-    "connectionString": "mongodb://adeojoemmanuel:LORDflex22!@ds01316.mlab.com:1316/altwithgoogle",
+    "connectionString": "mongodb://root:magnitude@ds259175.mlab.com:59175/altwithgoogle",
     "apiUrl": "http://localhost:5000/api",
     "secret": "my secrete"
 }
+
+
