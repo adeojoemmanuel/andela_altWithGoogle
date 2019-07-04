@@ -24,7 +24,13 @@
     "mongoskin": "^2.1.0",
     "q": "^1.4.1",
     "request": "^2.58.0",
-    "rootpath": "^0.1.2"
+    "rootpath": "^0.1.2",
+    "snyk": "^1.189.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }
