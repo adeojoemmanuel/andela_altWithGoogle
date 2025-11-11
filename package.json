@@ -12,7 +12,7 @@
   "dependencies": {
     "bcryptjs": "^2.1.0",
     "body-parser": "^1.13.2",
-    "cloudinary": "^1.9.1",
+    "cloudinary": "^2.7.0",
     "dotenv": "^4.0.0",
     "ejs": "^2.3.3",
     "express": "^4.13.0",
